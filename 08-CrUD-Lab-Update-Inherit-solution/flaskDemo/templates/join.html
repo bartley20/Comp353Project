@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block content %}
+	  {% for row in joined_m_n %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="{{ url_for('category', cID=row.Category_id) }}">{{row.Categoryname}}</a> <br/>
+              <!-- <small class="text-muted">ID: {{ row.CustomerID }} </small>
+              <small class="text-muted">Name: {{ row.CustomerName }} </small> -->
+             
+            </div>
+           
+          </div>
+        </article>
+     {% endfor %}
+	
+{% endblock content %}

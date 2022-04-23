@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block content %}
+	  {% for row in category %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="{{ url_for('product',pID = row.ProductID) }}">{{row.ProductName}}</a> <br/>
+              <small class="text-muted">Price: ${{ row.Price }}</small></br> </small>
+              
+             
+            </div>
+           
+          </div>
+        </article>
+     {% endfor %}
+	
+{% endblock content %}
