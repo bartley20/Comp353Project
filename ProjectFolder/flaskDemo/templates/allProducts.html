@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block content %}
+	  {% for row in joined_m_n %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <div class={{row.Categoryname}}></div>
+              <a class="mr-2" href="{{ url_for('purchase') }}">{{row.ProductName}}</a> <br/>
+              
+              <small class="text-muted">${{ row.Price }} </small><br />
+              <small class="text-muted">Quantity: {{ row.Amount_left }} </small>
+             
+            </div>
+           
+          </div>
+        </article>
+     {% endfor %}
+{% endblock content %}

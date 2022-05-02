@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class ="greetings">Hello, {{current_user.CustomerName}}</div>
+    <div class ="header-text">Purchase History</div>
+	  {% for row in orders %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <div class={{row.Categoryname}}></div>
+              <a class="mr-2" href="{{ url_for('category', cID=row.Category_id) }}">{{row.ProductName}}</a> <br/>
+              
+              <!-- <small class="text-muted">ID: {{ row.CustomerID }} </small>
+              <small class="text-muted">Name: {{ row.CustomerName }} </small> -->
+             
+            </div>
+           
+          </div>
+        </article>
+     {% endfor %}
+     <style>
+         .greetings{
+            font-family: 'Ruda', sans-serif;
+            font-family: 'Skranji', cursive; 
+            text-align: center;
+            font-size:1.8rem;
+         }
+         .header-text{
+             font-size:1.4rem;
+         }
+     </style>
+{% endblock content %}

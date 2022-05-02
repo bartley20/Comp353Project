@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+{% block content %}
+	  {% for row in joined_m_n %}
+        <article class="media content-section boxEffect">
+          <div class="media-body">
+            <div class="article-metadata">
+              <div class={{row.Categoryname}}></div>
+              <a class="mr-2" href="{{ url_for('category', cID=row.Category_id) }}">{{row.Categoryname}}</a> <br/>
+              
+              <!-- <small class="text-muted">ID: {{ row.CustomerID }} </small>
+              <small class="text-muted">Name: {{ row.CustomerName }} </small> -->
+             
+            </div>
+           
+          </div>
+        </article>
+     {% endfor %}
+	<style>
+    .boxEffect{
+      transition: all .2s ease-in-out;
+    }
+    .boxEffect:hover{
+      transform: scale(1.03);
+    }
+    .newBox{
+      display: flex;
+      flex-direction: column;
+    }
+    .Tops{
+      width:150px;
+      height:150px;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-image: url('../static/profile_pics/Shirts.png');
+    }
+    .Pants{
+      width:150px;
+      height:150px;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-image: url('../static/profile_pics/pants.png');
+    }
+    .Shoes{
+      width:150px;
+      height:150px;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-image: url('../static/profile_pics/shoes.png');
+    }
+    .Hats{
+      width:150px;
+      height:150px;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-image: url('../static/profile_pics/hats.png');
+    }
+    .Electronics{
+      width:150px;
+      height:150px;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-image: url('../static/profile_pics/phone.png');
+    }
+    .Furniture{
+      width:150px;
+      height:150px;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-image: url('../static/profile_pics/furniture.png');
+    }
+  </style>
+{% endblock content %}
