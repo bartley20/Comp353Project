@@ -35,7 +35,18 @@ def product(pID):
     category = Product.query.filter(Product.ProductID == pID)
     return render_template('viewProduct.html', title="Category", category=category, now=datetime.utcnow())
 
-
+@app.route("/edit", methods=['GET', 'POST'])
+@login_required
+def edit():
+    form = UpdateAccountForm()
+    if form.validate_on_submit():
+        current_user.email = form.email.data
+        db.session.commit()
+        flash('Your account has been updated!', 'success')
+        return redirect(url_for('account'))
+    
+    
+    return render_template('editAccount.html', title='edit', form=form)
 @app.route("/create", methods=['GET', 'POST'])
 def create():
     form = CreateForm()
@@ -131,8 +142,13 @@ def save_picture(form_picture):
 @login_required
 def account():
     #Want to query all the orders of customerID and get the name of the product
-    myOrders = Order.query.filter(Order.CustomerID == current_user.id)
     
+    myOrders = Order.query.add_columns(Order.OrderID, Product.ProductName, Product.Price, Order_Detail.Quantity)\
+        .filter(Order.CustomerID == current_user.id).\
+        join(Order_Detail, Order.OrderID == Order_Detail.OrderID).\
+            join(Product, Product.ProductID == Order_Detail.ProductID)
+        
+                    
     return render_template('myOrders.html', title='myOrders', orders = myOrders)
 
 
