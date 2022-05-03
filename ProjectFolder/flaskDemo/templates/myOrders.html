@@ -9,10 +9,10 @@
           <div class="media-body">
             <div class="article-metadata">
               <div class={{row.Categoryname}}></div>
-              <div class="mr-2">{{row.ProductName}} x{{row.Quantity}}</div> <br/>
+              <div class="mr-2">{{row[1]}} x{{row[3]}}</div> <br/>
               
-              <div class="price-tag">You Spent: ${{ row.Price * row.Quantity }} </div>
-              <form action="{{ url_for('delete_order', OrderID = row.OrderID) }}" method="POST">
+              <div class="price-tag">You Spent: ${{ row[2] * row[3] }} </div>
+              <form action="{{ url_for('delete_order', OrderID = row[0]) }}" method="POST">
                 <input type="hidden" name="_method" value="DELETE">
                 <input class="btn btn-danger" type="submit" value="Delete">
               </form>
