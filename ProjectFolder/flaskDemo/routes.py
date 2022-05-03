@@ -40,6 +40,15 @@ def category(cID):
     category = Product.query.filter(Product.Category_id == cID)
     return render_template('about.html', title="Category", category=category, now=datetime.utcnow())
 
+@app.route("/suppliers")
+def suppliers():
+    suppliers = Category.query.add_columns(Category.Categoryname,Supplier.Name,Supplier.phoneNumber).\
+        join(Product, Category.Category_id == Product.Category_id).\
+            join(Supplier, Supplier.SupplierID == Product.SupplierID)
+
+    return render_template('ourSuppliers.html', title="Suppliers", suppliers=suppliers, now=datetime.utcnow())
+
+
 @app.route("/product/<pID>")
 def product(pID):
     category = Product.query.filter(Product.ProductID == pID)
