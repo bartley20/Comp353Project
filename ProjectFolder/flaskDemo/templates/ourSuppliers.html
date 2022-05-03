@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block content %}
+	  {% for row in suppliers %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <div class={{row.Categoryname}}></div>
+              <div class="mr-2" >{{row.Name}}</div> <br/>
+              <small class="text-muted">Contact: +1 {{ row.phoneNumber }} </small><br />
+              <small class="text-muted">Makes Our {{ row.Categoryname }} </small><br />
+              
+             
+            </div>
+           
+          </div>
+        </article>
+     {% endfor %}
+{% endblock content %}
