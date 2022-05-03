@@ -38,9 +38,13 @@ def product(pID):
 @app.route("/edit", methods=['GET', 'POST'])
 @login_required
 def edit():
+    user = Customer.query.get_or_404(current_user.id)
+    userEmail = user.CustomerEmail
+
     form = UpdateAccountForm()
     if form.validate_on_submit():
-        current_user.email = form.email.data
+        if userEmail != form.email.data:
+            user.CustomerEmail = form.email.data
         db.session.commit()
         flash('Your account has been updated!', 'success')
         return redirect(url_for('account'))
@@ -86,6 +90,15 @@ def purchase():
         return redirect(url_for('home'))
     
     return render_template('purchase.html', title="create", form=form)
+
+@app.route("/delete/<int:OrderID>", methods=['POST'])
+@login_required
+def delete_order(OrderID):
+    order = Order.query.get_or_404(OrderID)
+    db.session.delete(order)
+    db.session.commit()
+    flash('The order has been deleted!', 'success')
+    return redirect(url_for('account'))
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():

@@ -11,6 +11,10 @@
               <div class="mr-2">{{row.ProductName}} x{{row.Quantity}}</div> <br/>
               
               <div class="price-tag">You Spent: ${{ row.Price * row.Quantity }} </div>
+              <form action="{{ url_for('delete_order', OrderID = row.OrderID) }}" method="POST">
+                <input type="hidden" name="_method" value="DELETE">
+                <input class="btn btn-danger" type="submit" value="Delete">
+              </form>
               <!--<small class="text-muted">Name: {{ row.CustomerName }} </small> -->
              
             </div>
