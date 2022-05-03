@@ -3,6 +3,7 @@
     <div class ="greetings">Hello, {{current_user.CustomerName}}</div>
     <a class='edit-btn' href="{{url_for('edit')}}">Edit Account</a>
     <div class ="header-text">Purchase History</div>
+    <div class="text">Total orders: {{totalOrders}}</div>
 	  {% for row in orders %}
         <article class="media content-section items">
           <div class="media-body">
