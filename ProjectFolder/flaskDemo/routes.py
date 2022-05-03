@@ -7,6 +7,16 @@ from flaskDemo.forms import PurchaseForm, LoginForm, UpdateAccountForm, Registra
 from flaskDemo.models import Post,Category, Customer, Order, Order_Detail, Product, Supplier
 from flask_login import login_user, current_user, logout_user, login_required
 from datetime import datetime
+from flask_mysqldb import MySQL
+
+"""
+Edit these values to your specific info, including port
+"""
+app.config["MYSQL_USER"] = "tab"
+app.config["MYSQL_PASSWORD"] = "bart"
+app.config["MYSQL_DB"] = "ecommerce"
+app.config["MYSQL_PORT"] = 3306
+mysql = MySQL(app)
 
 
 @app.route("/")
@@ -160,9 +170,14 @@ def account():
         .filter(Order.CustomerID == current_user.id).\
         join(Order_Detail, Order.OrderID == Order_Detail.OrderID).\
             join(Product, Product.ProductID == Order_Detail.ProductID)
-        
-                    
-    return render_template('myOrders.html', title='myOrders', orders = myOrders)
+    
+    user = str(current_user.id)
+    cur = mysql.connection.cursor()
+    cur.execute("""SELECT COUNT(orders.OrderID) FROM orders WHERE orders.CustomerID = %s""", [current_user.id])
+    ordertotal = cur.fetchall()
+    ordertotal = str(*ordertotal[0])
+                
+    return render_template('myOrders.html', title='myOrders', orders = myOrders, totalOrders= ordertotal)
 
 
 @app.route("/dept/new", methods=['GET', 'POST'])
