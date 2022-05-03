@@ -42,7 +42,7 @@ class Post(db.Model):
 
 
 class Category(db.Model):
-    __table__ = db.Model.metadata.tables['Category']
+    __table__ = db.Model.metadata.tables['category']
     
 
 
@@ -57,14 +57,14 @@ def getDepartmentFactory(columns=None):
     return partial(getDepartment, columns=columns)
 
 class Order(db.Model):
-    __table__ = db.Model.metadata.tables['Orders']
+    __table__ = db.Model.metadata.tables['orders']
     
 class Order_Detail(db.Model):
     __table__ = db.Model.metadata.tables['order_detail']
 class Product(db.Model):
-    __table__ = db.Model.metadata.tables['Product']
+    __table__ = db.Model.metadata.tables['product']
 class Supplier(db.Model):
-    __table__ = db.Model.metadata.tables['Supplier']
+    __table__ = db.Model.metadata.tables['supplier']
 
     
 
