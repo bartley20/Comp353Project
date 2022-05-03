@@ -4,9 +4,9 @@
         <article class="media content-section">
           <div class="media-body">
             <div class="article-metadata">
-              <a class="mr-2" href="{{ url_for('purchase') }}">{{row.ProductName}}</a> <br/>
-              <small class="text-muted">Price: ${{ row.Price }}</small></br> </small>
-              <small class="text-muted">Quantity: {{ row.Amount_left }}</small></br> </small>
+              <a class="mr-2" href="{{ url_for('purchase') }}">{{row[1]}}</a> <br/>
+              <small class="text-muted">Price: ${{ row[2] }}</small></br> </small>
+              <small class="text-muted">Quantity: {{ row[3] }}</small></br> </small>
             </div>         
           </div>
         </article>

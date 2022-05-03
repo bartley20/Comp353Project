@@ -5,8 +5,8 @@
         <article class="media content-section boxEffect">
           <div class="media-body">
             <div class="article-metadata">
-              <div class={{row.Categoryname}}></div>
-              <a class="mr-2" href="{{ url_for('category', cID=row.Category_id) }}">{{row.Categoryname}}</a> <br/>
+              <div class={{row[1]}}></div>
+              <a class="mr-2" href="{{ url_for('category', cID=row[0]) }}">{{row[1]}}</a> <br/>
               
               <!-- <small class="text-muted">ID: {{ row.CustomerID }} </small>
               <small class="text-muted">Name: {{ row.CustomerName }} </small> -->
