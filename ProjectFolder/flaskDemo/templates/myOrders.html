@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class ="greetings">Hello, {{current_user.CustomerName}}</div>
+    <a class='edit-btn' href="{{url_for('edit')}}">Edit Account</a>
+    <div class ="header-text">Purchase History</div>
+	  {% for row in orders %}
+        <article class="media content-section items">
+          <div class="media-body">
+            <div class="article-metadata">
+              <div class={{row.Categoryname}}></div>
+              <div class="mr-2">{{row.ProductName}} x{{row.Quantity}}</div> <br/>
+              
+              <div class="price-tag">You Spent: ${{ row.Price * row.Quantity }} </div>
+              <!--<small class="text-muted">Name: {{ row.CustomerName }} </small> -->
+             
+            </div>
+           
+          </div>
+        </article>
+     {% endfor %}
+     <style>
+       .items{
+        width:70%; 
+        margin:auto;
+        margin-top:2%;
+        margin-bottom:2%;
+        transition: .2s ease-in-out;
+       }
+       .items:hover{
+         transform:scale(1.02)
+       }
+       .price-tag{
+         background: rgb(5, 194, 5);
+         border-radius:10px;
+         color: white;
+         padding:1%;
+         width: 40%;
+         margin: auto;
+         margin-top:0;
+         margin-bottom:0;
+         text-align: center;         
+       }
+         .greetings{
+            font-family: 'Ruda', sans-serif;
+            font-family: 'Skranji', cursive; 
+            text-align: center;
+            font-size:1.8rem;
+         }
+         .header-text{
+             font-size:1.4rem;
+         }
+         .edit-btn{
+           background: rgba(219, 219, 219, 0.568);
+           width: fit-content;
+           padding: 1%;
+           margin-bottom: 2%;
+           border-radius: 4px;
+           transition: .1s ease-in-out;
+         }
+         .edit-btn:hover{
+           background: rgb(255, 255, 255);;
+         }
+     </style>
+{% endblock content %}
