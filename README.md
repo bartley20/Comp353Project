@@ -1,1 +1,1 @@
-# Comp353Project
+# E-Commerce Project
